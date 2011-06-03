@@ -1,10 +1,5 @@
 <html>
 <head>
-	<style>
-		body{
-			background-image:url(http://www.ratemybarber.com/images/wood-bg.jpg);
-		}
-	</style>
 <script type="text/javascript" charset="utf-8">
 
     // Wait for PhoneGap to load
@@ -29,13 +24,16 @@
         states[NetworkStatus.NOT_REACHABLE]                      = 'No network connection';
         states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Carrier data connection';
         states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi connection';
-
+		if(states[networkState] == 'No network connection'){
+			window.location = 'nonetwork.html';
+		}else{
+			window.location = 'index2.html';
+		}
         alert('Connection type: ' + states[networkState]);
     }
 
     </script>
 </head>
-<body onload="onLoad()">
-<center><img src="http://www.ratemybarber.com/images/logo_new.png" /></center>
+<body onLoad="onLoad()">
 </body>
 </html>
