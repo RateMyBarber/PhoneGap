@@ -26,9 +26,10 @@
 			url: 'http://maps.googleapis.com/maps/api/geocode/xml?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false',
 			dataType: "xml",
 			success: function(xml) {
-				$(xml).find('address_component').each(function(){
-					alert($(this).attr('short_name'));
-				});
+				xmlDoc = $.parseXML(xml);
+   				$xml = $(xmlDoc);
+    			$title = $xml.find("short_name");
+				alert($title.text());
 			}
 		});
 	};
