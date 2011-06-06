@@ -20,46 +20,17 @@
 		navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
 	
-	var onSuccess = function(position) {		  
-		$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false', function(data) {
-		  var items = [];
-		  var state = '';
-		  var city = '';
-		  var city_bool = false;
-		  var state_bool = false;
-		  $.each(data, function(key, val) {
-			  $.each(val, function(key2, val2) {
-			  	$.each(val2, function(key3, val3) {
-					if(key3 == 'address_components'){
-			  			$.each(val3, function(key4, val4) {
-			  				$.each(val4, function(key5, val5) {
-								//alert(key5 + " = " + val5);
-								if(key5 == 'short_name'){
-									if(city_bool == false){
-										city = val5;
-										//alert(city);
-									}
-									if(state_bool == false){
-										state = val5;
-									}
-								}
-								if(key5 == 'types'){
-									//alert(val5);
-									if(val5 == 'sublocality,political'){
-										city_bool = true;
-									}
-									if(val5 == 'administrative_area_level_1,political'){
-										state_bool = true;
-									}
-								}
-							});
-						});
-					};
-			  	});
-			  });
-		  });
+	var onSuccess = function(position) {
+		$.ajax({
+	        type: "GET",
+			url: 'http://maps.googleapis.com/maps/api/geocode/xml?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false',
+			dataType: "xml",
+			success: function(xml) {
+				$(xml).find('address_component').each(function(){
+					alert($(this).attr('short_name'));
+				});
+			}
 		});
-		alert("City: " + city + " - State: " + state);
 	};
 
 	// onError Callback receives a PositionError object
