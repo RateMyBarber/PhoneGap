@@ -37,18 +37,18 @@
 								if(key5 == 'short_name'){
 									if(city_bool == false){
 										city = val5;
-										alert(city);
+										//alert(city);
 									}
 									if(state_bool == false){
 										state = val5;
 									}
 								}
 								if(key5 == 'types'){
-									alert(val5);
-									if(val5 == 'sublocality'){
+									//alert(val5);
+									if(val5 == 'sublocality,political'){
 										city_bool = true;
 									}
-									if(val5 == 'administrative_area_level_1'){
+									if(val5 == 'administrative_area_level_1,political'){
 										state_bool = true;
 									}
 								}
