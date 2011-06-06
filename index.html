@@ -33,6 +33,7 @@
 					if(key3 == 'address_components'){
 			  			$.each(val3, function(key4, val4) {
 			  				$.each(val4, function(key5, val5) {
+								alert(key5 + " = " + val5);
 								if(key5 == 'short_name'){
 									if(city = '' && city_bool == false){
 										city = val5;
