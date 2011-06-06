@@ -21,7 +21,7 @@
     }
 	
 	var onSuccess = function(position) {		  
-		  $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false', function(data) {
+		$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false', function(data) {
 		  var items = [];
 
 		  $.each(data, function(key, val) {
@@ -30,6 +30,7 @@
 			  }
 		  });
 		});
+		alert("done");
 	};
 
 	// onError Callback receives a PositionError object
