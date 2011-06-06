@@ -29,7 +29,9 @@
 			  	$.each(val2, function(key3, val3) {
 					if(key3 == 'address_components'){
 			  			$.each(val3, function(key4, val4) {
-					  		alert(key4 + " = " +val4);
+			  				$.each(val4, function(key5, val5) {
+					  			alert(key5 + " = " +val5);
+							});
 						});
 					};
 			  	});
