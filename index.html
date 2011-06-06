@@ -25,7 +25,9 @@
 		  var items = [];
 
 		  $.each(data, function(key, val) {
-			  alert(key + " = " +val);
+			  $.each(val, function(key2, val2) {
+				  alert(key2 + " = " +val2);
+			  });
 		  });
 		});
 		alert("done");
