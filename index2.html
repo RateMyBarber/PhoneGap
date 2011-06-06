@@ -4,6 +4,37 @@
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
 <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+<script src="phonegap.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+    // Wait for PhoneGap to load
+    // 
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {
+        navigator.network.isReachable("phonegap.com", reachableCallback, {});
+    }
+
+    // Check network status
+    //
+    function reachableCallback(reachability) {
+        // There is no consistency on the format of reachability
+        var networkState = reachability.code || reachability;
+
+        var states = {};
+        states[NetworkStatus.NOT_REACHABLE]                      = 'No network connection';
+        states[NetworkStatus.REACHABLE_VIA_CARRIER_DATA_NETWORK] = 'Carrier data connection';
+        states[NetworkStatus.REACHABLE_VIA_WIFI_NETWORK]         = 'WiFi connection';
+		if(states[networkState] == 'No network connection'){
+			window.location = 'nonetwork.html';
+		}
+    }
+onLoad();
+    </script>
 </head>
 <body>
     <div data-role="page" data-theme="b">
